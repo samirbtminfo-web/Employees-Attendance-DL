@@ -30,10 +30,10 @@ const CONFIG = {
 
   // ── 4. WORK HOURS ─────────────────────────────────────────
   workHours: {
-    checkInStart:  "07:00",   // check-in শুরুর সময়
-    checkInEnd:    "12:00",   // check-in শেষের সময়
-    checkOutStart: "14:00",   // check-out শুরুর সময়
-    checkOutEnd:   "22:00",   // check-out শেষের সময়
+    checkInStart:  "09:40",   // check-in শুরুর সময়
+    checkInEnd:    "10:20",   // check-in শেষের সময়
+    checkOutStart: "17:30",   // check-out শুরুর সময়
+    checkOutEnd:   "18:30",   // check-out শেষের সময়
     timezone:      "Asia/Dhaka",
   },
 
