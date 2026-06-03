@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Lands - Attendance System</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C96A;--gold-dim:rgba(201,168,76,0.12);
+  --dark:#0D0D0D;--dark2:#161616;--dark3:#1E1E1E;--dark4:#242424;
+  --text:#F0EDE8;--text-muted:#9A9080;
+  --border:rgba(201,168,76,0.22);--border-soft:rgba(255,255,255,0.06);
+  --success:#4CAF82;--danger:#E05C5C;--warning:#E8A44A;
+}
+body{font-family:'Hind Siliguri',sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
+
+/* BG */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%,rgba(201,168,76,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%,rgba(201,168,76,0.05) 0%,transparent 60%),
+    repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,0.013) 40px,rgba(201,168,76,0.013) 41px);
+}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.bg-orb1{width:500px;height:500px;background:rgba(201,168,76,0.04);top:-100px;left:-100px;}
+.bg-orb2{width:400px;height:400px;background:rgba(201,168,76,0.03);bottom:-100px;right:-100px;}
+
+.wrap{position:relative;z-index:1;width:100%;max-width:480px;}
+
+/* LOGO */
+.logo-area{text-align:center;margin-bottom:36px;animation:fadeDown .7s ease both;}
+.logo-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));
+  border:1px solid var(--border);border-radius:20px;
+  padding:16px 28px;margin-bottom:20px;
+}
+.logo-icon{font-size:40px;line-height:1;}
+.logo-text-wrap{text-align:left;}
+.logo-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--gold);line-height:1.1;}
+.logo-sub{font-size:11px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;margin-top:3px;}
+.tagline{font-size:14px;color:var(--text-muted);}
+.tagline span{color:var(--gold);}
+
+/* CARD */
+.card{
+  background:var(--dark2);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:40px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(201,168,76,0.1);
+  animation:fadeUp .7s .1s ease both;
+}
+.card-title{
+  font-size:18px;font-weight:600;margin-bottom:28px;
+  display:flex;align-items:center;gap:10px;color:var(--text-muted);
+}
+.card-title::before{content:'';width:4px;height:22px;background:linear-gradient(to bottom,var(--gold),var(--gold-light));border-radius:2px;}
+
+/* INPUT */
+.input-wrap{position:relative;margin-bottom:8px;}
+.id-input{
+  width:100%;
+  background:var(--dark3);
+  border:2px solid rgba(255,255,255,0.07);
+  border-radius:14px;
+  padding:20px 20px 20px 56px;
+  font-family:'Hind Siliguri',sans-serif;
+  font-size:26px;font-weight:700;
+  color:var(--text);
+  letter-spacing:.12em;
+  text-align:center;
+  outline:none;
+  transition:border-color .25s,box-shadow .25s;
+}
+.id-input::placeholder{color:rgba(255,255,255,0.15);font-size:16px;letter-spacing:.05em;font-weight:400;}
+.id-input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,0.1);}
+.input-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:22px;pointer-events:none;}
+.hint{font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:20px;}
+
+/* SUBMIT BTN */
+.submit-btn{
+  width:100%;padding:16px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  border:none;border-radius:14px;
+  font-family:'Hind Siliguri',sans-serif;
+  font-size:17px;font-weight:700;color:var(--dark);
+  cursor:pointer;transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:14px;
+}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,168,76,0.38);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.spinner{width:20px;height:20px;border:3px solid rgba(0,0,0,.2);border-top-color:var(--dark);border-radius:50%;animation:spin .7s linear infinite;display:none;}
+
+/* RESULT */
+.result-box{
+  margin-top:20px;border-radius:16px;padding:24px;
+  text-align:center;display:none;
+  animation:fadeUp .4s ease both;
+}
+.result-box.success{background:rgba(76,175,130,0.08);border:1px solid rgba(76,175,130,0.3);}
+.result-box.error{background:rgba(224,92,92,0.08);border:1px solid rgba(224,92,92,0.3);}
+.result-icon{font-size:42px;margin-bottom:12px;}
+.result-welcome{font-size:14px;color:var(--text-muted);margin-bottom:4px;}
+.result-name{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.result-desig{font-size:14px;color:var(--text-muted);margin-bottom:16px;}
+.result-status-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 20px;border-radius:100px;
+  font-size:15px;font-weight:700;margin-bottom:10px;
+}
+.checkin-badge{background:rgba(76,175,130,0.15);border:1px solid rgba(76,175,130,0.4);color:var(--success);}
+.checkout-badge{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);color:var(--gold);}
+.result-time{font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.result-date{font-size:13px;color:var(--text-muted);}
+.result-msg{font-size:13px;color:var(--text-muted);margin-top:8px;}
+.result-box.error .result-icon{font-size:36px;}
+.result-box.error .result-name{color:var(--danger);}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-muted);font-size:13px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-soft);}
+
+/* ADMIN LINK */
+.admin-link{
+  display:block;text-align:center;
+  font-size:13px;color:var(--text-muted);
+  text-decoration:none;
+  padding:10px;border-radius:10px;
+  transition:color .2s;
+}
+.admin-link:hover{color:var(--gold);}
+
+/* LIVE CLOCK */
+.live-clock{
+  text-align:center;margin-bottom:24px;
+  animation:fadeDown .7s .05s ease both;
+}
+.clock-time{font-size:42px;font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1;}
+.clock-date{font-size:14px;color:var(--text-muted);margin-top:4px;}
+
+/* IP Warning */
+.ip-warn{
+  background:rgba(224,92,92,0.08);border:1px solid rgba(224,92,92,0.25);
+  border-radius:14px;padding:20px;text-align:center;
+  display:none;animation:fadeUp .4s ease both;
+}
+.ip-warn .wi{font-size:40px;margin-bottom:10px;}
+.ip-warn h3{color:var(--danger);margin-bottom:6px;}
+.ip-warn p{font-size:14px;color:var(--text-muted);}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:28px;font-size:12px;color:var(--text-muted);animation:fadeUp .7s .3s ease both;}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:520px){.card{padding:24px;}.clock-time{font-size:34px;}.logo-name{font-size:20px;}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="bg-orb bg-orb1"></div>
+<div class="bg-orb bg-orb2"></div>
+
+<div class="wrap">
+
+  <!-- LOGO -->
+  <div class="logo-area">
+    <div class="logo-badge">
+      <div class="logo-icon">🏢</div>
+      <div class="logo-text-wrap">
+        <div class="logo-name">Dream Lands</div>
+        <div class="logo-sub">Real Estate Limited</div>
+      </div>
+    </div>
+    <div class="tagline">স্বাগতম — <span>Attendance Portal</span></div>
+  </div>
+
+  <!-- CLOCK -->
+  <div class="live-clock">
+    <div class="clock-time" id="liveClock">--:-- --</div>
+    <div class="clock-date" id="liveDate">—</div>
+  </div>
+
+  <!-- IP WARNING (shown if IP blocked) -->
+  <div class="ip-warn" id="ipWarn">
+    <div class="wi">🔒</div>
+    <h3>অ্যাক্সেস অনুমোদিত নয়</h3>
+    <p>এই পোর্টালটি শুধুমাত্র অফিস নেটওয়ার্ক থেকে ব্যবহার করা যাবে।<br>অনুগ্রহ করে অফিসে এসে চেক-ইন করুন।</p>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="card" id="mainCard">
+    <div class="card-title">আপনার Employee ID দিন</div>
+
+    <div class="input-wrap">
+      <span class="input-icon">🪪</span>
+      <input
+        class="id-input" id="empId"
+        type="text" inputmode="numeric"
+        placeholder="ID লিখুন (যেমন: 3161)"
+        maxlength="10"
+        autocomplete="off"
+        onkeydown="if(event.key==='Enter')submitAttendance()"
+      />
+    </div>
+    <div class="hint">চেয়ারম্যান → 3161 &nbsp;|&nbsp; MD → 75540 &nbsp;|&nbsp; Marketing → 65540+</div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitAttendance()">
+      <span class="spinner" id="spinner"></span>
+      <span id="btnText">✅ Submit Attendance</span>
+    </button>
+
+    <!-- RESULT -->
+    <div class="result-box" id="resultBox">
+      <div class="result-icon" id="resIcon"></div>
+      <div class="result-welcome" id="resWelcome"></div>
+      <div class="result-name" id="resName"></div>
+      <div class="result-desig" id="resDesig"></div>
+      <div id="resBadge"></div>
+      <div class="result-time" id="resTime"></div>
+      <div class="result-date" id="resDate"></div>
+      <div class="result-msg" id="resMsg"></div>
+    </div>
+
+    <div class="divider">অথবা</div>
+    <a href="admin.html" class="admin-link">🔐 Admin Dashboard →</a>
+  </div>
+
+  <div class="footer">© 2025 Dream Lands Real Estate Limited · Attendance Portal v2.0</div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/employees.js"></script>
+<script src="js/attendance.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
