@@ -11,7 +11,7 @@ const EMPLOYEES = {
 
   "3161": {
     id:          "3161",
-    name:        "Chairman",          // ← আসল নাম দিন
+    name:        "Ali Ahammed",          // ← আসল নাম দিন
     designation: "Chairman",
     team:        "Top Management",
     fullCode:    "CH-3161",
@@ -19,7 +19,7 @@ const EMPLOYEES = {
 
   "75540": {
     id:          "75540",
-    name:        "Managing Director", // ← আসল নাম দিন
+    name:        "Samir Hossen", // ← আসল নাম দিন
     designation: "Managing Director",
     team:        "Top Management",
     fullCode:    "MD-75540",
@@ -27,7 +27,7 @@ const EMPLOYEES = {
 
   "85541": {
     id:          "85541",
-    name:        "General Manager",   // ← আসল নাম দিন
+    name:        "Raihan Helaly",   // ← আসল নাম দিন
     designation: "General Manager",
     team:        "Top Management",
     fullCode:    "GM-85541",
@@ -49,12 +49,27 @@ const EMPLOYEES = {
 
   "65540": {
     id:          "65540",
-    name:        "Marketing Executive 1", // ← আসল নাম দিন
+    name:        "MD Nayeemuzzaman Nahid", // ← আসল নাম দিন
     designation: "Marketing Executive",
     team:        "Marketing",
     fullCode:    "ME-65540",
   },
 
+  "65541": {
+    id:          "65541",
+    name:        "Farjana Lucky", // ← আসল নাম দিন
+    designation: "Marketing Executive",
+    team:        "Marketing",
+    fullCode:    "ME-65541",
+  },
+
+  "65542": {
+    id:          "65542",
+    name:        "Kaniz Fatema Joya", // ← আসল নাম দিন
+    designation: "Marketing Executive",
+    team:        "Marketing",
+    fullCode:    "ME-65542",
+  },
   // ── নিচে নতুন ME যোগ করুন ──────────────
   // "65541": { id:"65541", name:"...", designation:"Marketing Executive", team:"Marketing", fullCode:"ME-65541" },
   // "65542": { id:"65542", name:"...", designation:"Marketing Executive", team:"Marketing", fullCode:"ME-65542" },
