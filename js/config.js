@@ -9,7 +9,7 @@ const CONFIG = {
   company: {
     name:    "Dream Lands",
     tagline: "Real Estate Limited",
-    logo:    "🪙",          // ইমোজি বা img src দিতে পারেন
+    logo:    "🏢",          // ইমোজি বা img src দিতে পারেন
   },
 
   // ── 2. GOOGLE SHEET (Apps Script Web App URL) ────────────
@@ -30,8 +30,8 @@ const CONFIG = {
 
   // ── 4. WORK HOURS ─────────────────────────────────────────
   workHours: {
-    checkInStart:  "09:40",   // check-in শুরুর সময়
-    checkInEnd:    "10:20",   // check-in শেষের সময়
+    checkInStart:  "09:30",   // check-in শুরুর সময়
+    checkInEnd:    "10:30",   // check-in শেষের সময়
     checkOutStart: "17:30",   // check-out শুরুর সময়
     checkOutEnd:   "18:30",   // check-out শেষের সময়
     timezone:      "Asia/Dhaka",
