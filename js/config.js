@@ -9,12 +9,12 @@ const CONFIG = {
   company: {
     name:    "Dream Lands",
     tagline: "Real Estate Limited",
-    logo:    "🏢",          // ইমোজি বা img src দিতে পারেন
+    logo:    "🪙",          // ইমোজি বা img src দিতে পারেন
   },
 
   // ── 2. GOOGLE SHEET (Apps Script Web App URL) ────────────
   //  Setup গাইড: README.md দেখুন
-  sheetUrl: "https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec",
+  sheetUrl: "https://script.google.com/macros/s/AKfycbyBaeBsHuSreY888nCc3l5DFH8Su1KefxeAQAmkdZtCbNKLvi_mfnK1JCNvFYAAIOw0/exec",
   //  ↑ এই URL আপনার নিজের Apps Script Deploy URL দিয়ে বদলান
 
   // ── 3. OFFICE IP RESTRICTION ─────────────────────────────
@@ -44,6 +44,6 @@ const CONFIG = {
   // ── 6. ADMIN ──────────────────────────────────────────────
   admin: {
     // Admin dashboard এ ঢোকার পাসওয়ার্ড
-    password: "DreamLands@2025",
+    password: "1997",
   },
 };
