@@ -19,7 +19,7 @@ const EMPLOYEES = {
 
   "75540": {
     id:          "75540",
-    name:        "Samir Hossen", // ← আসল নাম দিন
+    name:        "Samir Hossen ", // ← আসল নাম দিন
     designation: "Managing Director",
     team:        "Top Management",
     fullCode:    "MD-75540",
@@ -27,7 +27,7 @@ const EMPLOYEES = {
 
   "85541": {
     id:          "85541",
-    name:        "Raihan Helaly",   // ← আসল নাম দিন
+    name:        "Raihan Helaly ",   // ← আসল নাম দিন
     designation: "General Manager",
     team:        "Top Management",
     fullCode:    "GM-85541",
@@ -49,30 +49,30 @@ const EMPLOYEES = {
 
   "65540": {
     id:          "65540",
-    name:        "MD Nayeemuzzaman Nahid", // ← আসল নাম দিন
+    name:        "Nayemuzzaman Nahid", // ← আসল নাম দিন
     designation: "Marketing Executive",
     team:        "Marketing",
     fullCode:    "ME-65540",
   },
 
-  "65541": {
-    id:          "65541",
-    name:        "Farjana Lucky", // ← আসল নাম দিন
-    designation: "Marketing Executive",
-    team:        "Marketing",
-    fullCode:    "ME-65541",
-  },
-
-  "65542": {
-    id:          "65542",
-    name:        "Kaniz Fatema Joya", // ← আসল নাম দিন
-    designation: "Marketing Executive",
-    team:        "Marketing",
-    fullCode:    "ME-65542",
-  },
   // ── নিচে নতুন ME যোগ করুন ──────────────
-  // "65541": { id:"65541", name:"...", designation:"Marketing Executive", team:"Marketing", fullCode:"ME-65541" },
-  // "65542": { id:"65542", name:"...", designation:"Marketing Executive", team:"Marketing", fullCode:"ME-65542" },
+ "65541": { 
+  id:"65541",
+  name:"Farjana Lucky", 
+  designation:"Marketing Executive", 
+  team:"Marketing", 
+  fullCode:"ME-65541"
+ },
+
+  "65542": { 
+  id:"65542",
+  name:"Kaniz Fatema Joya", 
+  designation:"Marketing Executive", 
+  team:"Marketing", 
+  fullCode:"ME-65542"
+ },
+
+  // "65543": { id:"65543", name:"...", designation:"Marketing Executive", team:"Marketing", fullCode:"ME-65543" },
 
 };
 
