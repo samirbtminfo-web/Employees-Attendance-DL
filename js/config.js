@@ -9,7 +9,7 @@ const CONFIG = {
   company: {
     name:    "Dream Lands",
     tagline: "Real Estate Limited",
-    logo:    "🏢",          // ইমোজি বা img src দিতে পারেন
+    logo:    "🪙",          // ইমোজি বা img src দিতে পারেন
   },
 
   // ── 2. GOOGLE SHEET (Apps Script Web App URL) ────────────
